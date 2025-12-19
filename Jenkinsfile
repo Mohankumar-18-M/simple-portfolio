@@ -2,19 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Code already checked out by Jenkins'
-                sh 'ls -la'
-            }
-        }
-
         stage('Build') {
             steps {
-                echo 'Building portfolio'
+                echo 'Static site - no build required'
             }
         }
 
-        stage('Test') {
+        stage('Deploy to Nginx') {
             steps {
-                echo 'No te
+                sh '''
+                docker exec portfolio-nginx rm -rf /usr/share/nginx/html/*
+                docker cp . portfolio-nginx:/usr/share/nginx/html/
+                '''
+                echo 'Deployed to Nginx successfully'
+            }
+        }
+    }
+}
+
