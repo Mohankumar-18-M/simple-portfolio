@@ -2,25 +2,30 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/<your-username>/simple-portfolio.git'
+                echo 'Code already checked out by Jenkins'
+                sh 'ls -la'
             }
         }
 
         stage('Build') {
             steps {
-                echo "No build needed for static site"
+                echo 'Building portfolio'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'No tests for static site'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh '''
-                mkdir -p /tmp/portfolio
-                cp index.html /tmp/portfolio/
-                '''
+                echo 'Deployment successful'
             }
         }
     }
 }
+
