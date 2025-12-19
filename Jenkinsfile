@@ -17,15 +17,4 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'No tests for static site'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deployment successful'
-            }
-        }
-    }
-}
-
+                echo 'No te
